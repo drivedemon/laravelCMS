@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      return view('categories.index');
+      return view('categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -34,7 +35,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request->all());
+      // dd($request->all());
+      // validate data input
+      $this->validate($request,
+        ['name'=> 'required|unique:categories'],
+        ['name.required' => 'กรุณากรอกข้อมูล',
+         'name.unique' => 'ห้ามกรอกข้อมูลซ้ำ']
+      );
+      // insert data to db
+      Category::create(['name'=>$request->name]);
+      // redirect page
+      return redirect(route('categories.index'));
     }
 
     /**
