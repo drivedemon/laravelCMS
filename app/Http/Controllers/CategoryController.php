@@ -44,6 +44,8 @@ class CategoryController extends Controller
       );
       // insert data to db
       Category::create(['name'=>$request->name]);
+      // session to show front endi
+      Session()->flash('success', 'บันทึกข้อมูลเรียบร้อย');
       // redirect page
       return redirect(route('categories.index'));
     }

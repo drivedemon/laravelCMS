@@ -87,6 +87,11 @@
                   </ul>
                 </div>
                 <div class="col-md-8">
+                  @if(Session()->has('success'))
+                    <div class="alert alert-success">
+                      {{Session()->get('success')}}
+                    </div>
+                  @endif
                   @yield('content')
                 </div>
               </div>
