@@ -94,8 +94,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+      // delete data to db by [Category method]
+      $category->delete();
+      // session to show front end
+      Session()->flash('success', 'ลบข้อมูลเรียบร้อย');
+      // redirect page
+      return redirect(route('categories.index'));
     }
 }

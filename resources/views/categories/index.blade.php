@@ -10,18 +10,40 @@
     <div class="card-body">
       <table class="table table-bordered">
         <thead class="thead-light">
-          <th width="90%">Name</th>
+          <th width="80%">Name</th>
+          <th width="10%"></th>
           <th width="10%"></th>
         </thead>
         <tbody>
           @foreach($categorys as $category)
             <tr>
               <td>{{$category->name}}</td>
-              <td align="center"><a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit</a></td>
+              <td align="center">
+                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit</a>
+              </td>
+              <td>
+                <form class="delete_form" action="{{route('categories.destroy', $category->id)}}" method="post">
+                  @csrf
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="submit" name="" value="Delete" class="btn btn-danger btn-sm">
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.delete_form').on('submit', function(){
+        if (confirm("ต้องการลบข้อมูลหรือไม่")) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    })
+  </script>
 @endsection
