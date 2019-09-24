@@ -8,8 +8,8 @@
       Category
     </div>
     <div class="card-body">
-      <table class="table">
-        <thead>
+      <table class="table table-bordered">
+        <thead class="thead-light">
           <th>Name</th>
         </thead>
         <tbody>

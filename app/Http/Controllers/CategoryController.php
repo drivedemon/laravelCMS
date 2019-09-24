@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Requests\CreateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -33,15 +34,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
+    // validate input in custom(CreateCategoryRequest)
     {
-      // dd($request->all());
-      // validate data input
-      $this->validate($request,
-        ['name'=> 'required|unique:categories'],
-        ['name.required' => 'กรุณากรอกข้อมูล',
-         'name.unique' => 'ห้ามกรอกข้อมูลซ้ำ']
-      );
       // insert data to db
       Category::create(['name'=>$request->name]);
       // session to show front endi
