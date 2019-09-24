@@ -10,12 +10,14 @@
     <div class="card-body">
       <table class="table table-bordered">
         <thead class="thead-light">
-          <th>Name</th>
+          <th width="90%">Name</th>
+          <th width="10%"></th>
         </thead>
         <tbody>
           @foreach($categorys as $category)
             <tr>
               <td>{{$category->name}}</td>
+              <td align="center"><a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit</a></td>
             </tr>
           @endforeach
         </tbody>

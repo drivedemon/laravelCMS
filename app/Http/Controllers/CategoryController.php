@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -39,7 +40,7 @@ class CategoryController extends Controller
     {
       // insert data to db
       Category::create(['name'=>$request->name]);
-      // session to show front endi
+      // session to show front end
       Session()->flash('success', 'บันทึกข้อมูลเรียบร้อย');
       // redirect page
       return redirect(route('categories.index'));
@@ -62,9 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+      return view('categories.create')->with('category', $category);
     }
 
     /**
@@ -74,9 +75,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
+    // validate input in custom(UpdateCategoryRequest)
     {
-        //
+      // update data to db by [Category method]
+      $category->update([
+        'name' => $request->name
+      ]);
+      // session to show front end
+      Session()->flash('success', 'อัปเดตข้อมูลเรียบร้อย');
+      // redirect page
+      return redirect(route('categories.index'));
     }
 
     /**
