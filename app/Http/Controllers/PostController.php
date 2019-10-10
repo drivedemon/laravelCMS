@@ -85,7 +85,7 @@ class PostController extends Controller
       $data = $request->only(['title', 'description', 'content']);
       if ($request->hasfile('image')) { // เช็คว่ามีการอัปโหลดภาพใหม่มาหรือไม่
         $image = $request->image->store('posts'); // รับค่าจาก store ที่มีการอัปโหลดภาพล่าสุดเข้ามา
-        Post->deleteImage(); // ลบภาพเก่า
+        $post->deleteImage(); // ลบภาพเก่า
         $data['image'] = $image;
       }
       $post->update($data);
