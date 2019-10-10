@@ -89,8 +89,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+      $post->delete(); // ลบข้อมูลในฐานข้อมูล
+      $post->deleteImage(); // ลบรูปใน storage_path
+
+      Session()->flash('success', 'ลบข้อมูลเรียบร้อย');
+      return redirect(route('posts.index'));
     }
 }
