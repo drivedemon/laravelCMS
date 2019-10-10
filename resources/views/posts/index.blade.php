@@ -11,7 +11,7 @@
       @if ($posts->count() > 0)
         <table class="table table-bordered">
           <thead class="thead-light">
-            <th class="text-center">Image</th>
+            <th class="text-center" width="20%">Image</th>
             <th>Title</th>
             <th width="10%"></th>
             <th width="10%"></th>
