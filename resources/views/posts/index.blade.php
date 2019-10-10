@@ -21,7 +21,9 @@
               <tr>
                 <td align="center"><img src="storage/{{$post->image}}" alt="" width="40px" height="40px"></td>
                 <td>{{$post->title}}</td>
-                <td><a href="" class="btn btn-info btn-sm">Edit</a></td>
+                <td>
+                  <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm">Edit</a>
+                </td>
                 <td>
                   <form class="delete_form" action="{{route('posts.destroy', $post->id)}}" method="post">
                     @csrf

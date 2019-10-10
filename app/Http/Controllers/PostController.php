@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -66,9 +67,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+      return view('posts.create')->with('post', $post);
     }
 
     /**
@@ -78,9 +79,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
+    // validate input in custom(UpdatePostRequest)
     {
-        //
+      $data = $request->only(['title', 'description', 'content']);
+      if ($request->hasfile('image')) { // เช็คว่ามีการอัปโหลดภาพใหม่มาหรือไม่
+        $image = $request->image->store('posts'); // รับค่าจาก store ที่มีการอัปโหลดภาพล่าสุดเข้ามา
+        Post->deleteImage(); // ลบภาพเก่า
+        $data['image'] = $image;
+      }
+      $post->update($data);
+
+      Session()->flash('success', 'อัปเดตข้อมูลเรียบร้อย');
+      return redirect(route('posts.index'));
     }
 
     /**
