@@ -41,7 +41,14 @@
           <select class="form-control" name="category">
             <option value="">- กรุณาเลือก -</option>
             @foreach($categories as $category)
-            <option value="{{$category->id}}">{{$category->name}}</option>            
+              <option value="{{$category->id}}"
+                @if (isset($post))
+                  @if ($category->id == $post->category_id)
+                    selected
+                  @endif
+                @endif>
+                {{$category->name}}
+              </option>
             @endforeach
           </select>
         </div>
