@@ -13,6 +13,7 @@
           <thead class="thead-light">
             <th class="text-center" width="20%">Image</th>
             <th>Title</th>
+            <th class="text text-center" width="10%">Category</th>
             <th width="10%"></th>
             <th width="10%"></th>
           </thead>
@@ -21,6 +22,8 @@
               <tr>
                 <td align="center"><img src="storage/{{$post->image}}" alt="" width="40px" height="40px"></td>
                 <td>{{$post->title}}</td>
+                <!-- call syntax post function in modal post -->
+                <td><a href="{{route('categories.edit', $post->category->id)}}">{{$post->category->name}}</a></td>
                 <td>
                   <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm">Edit</a>
                 </td>
