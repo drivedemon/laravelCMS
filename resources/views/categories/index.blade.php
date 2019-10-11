@@ -12,7 +12,8 @@
       @if($categorys->count() > 0)
         <table class="table table-bordered">
           <thead class="thead-light">
-            <th width="80%">Name</th>
+            <th width="70%">Name</th>
+            <th class="text text-center" width="10%">Total post</th>
             <th width="10%"></th>
             <th width="10%"></th>
           </thead>
@@ -20,6 +21,10 @@
             @foreach($categorys as $category)
               <tr>
                 <td>{{$category->name}}</td>
+                <td align="center">
+                  <!-- call syntax post function in modal post -->
+                  {{$category->post->count()}}
+                </td>
                 <td align="center">
                   <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit</a>
                 </td>
