@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
   protected $fillable = ['name'];
+
+  public function post() {
+    // relation 1 to many (this[post] many)
+    return $this->hasMany(Post::class);
+  }
 }
