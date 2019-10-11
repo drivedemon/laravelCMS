@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-      return view('posts.create');
+      return view('posts.create')->with('categories', Category::all());
     }
 
     /**
@@ -43,7 +44,8 @@ class PostController extends Controller
         'title'=> $request->title,
         'description'=> $request->description,
         'content'=> $request->content,
-        'image'=> $image
+        'image'=> $image,
+        'category_id'=> $request->category
       ]);
 
       Session()->flash('success', 'บันทึกข้อมูลเรียบร้อย');
