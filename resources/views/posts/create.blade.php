@@ -46,12 +46,31 @@
                   @if ($category->id == $post->category_id)
                     selected
                   @endif
-                @endif>
+                @endif
+                >
                 {{$category->name}}
               </option>
             @endforeach
           </select>
         </div>
+        @if ($tags->count() > 0)
+          <div class="form-group">
+            <label for="Category">Tag</label>
+            <select class="form-control" name="tags[]" multiple>
+              @foreach($tags as $tag)
+                <option value="{{$tag->id}}"
+                  @if (isset($post))
+                    @if ($post->hasTag($tag->id))
+                      selected
+                    @endif
+                  @endif
+                  >
+                  {{$tag->name}}
+                </option>
+              @endforeach
+            </select>
+          </div>
+        @endif
         <div class="form-group">
           <input type="submit" name="" value="{{isset($post)?'Edit Post':'Add Post'}}" class="btn btn-success">
         </div>

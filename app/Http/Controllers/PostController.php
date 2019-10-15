@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use App\Http\Middleware\VerifyCategory;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -32,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-      return view('posts.create')->with('categories', Category::all());
+      return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -45,13 +46,16 @@ class PostController extends Controller
     {
       $image = $request->image->store('posts');
 
-      Post::create([
+      $post = Post::create([
         'title'=> $request->title,
         'description'=> $request->description,
         'content'=> $request->content,
         'image'=> $image,
         'category_id'=> $request->category
       ]);
+      if ($request->tags) {
+        $post->tags()->attach($request->tags);
+      }
 
       Session()->flash('success', 'บันทึกข้อมูลเรียบร้อย');
       return redirect(route('posts.index'));
@@ -76,7 +80,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-      return view('posts.create')->with('post', $post)->with('categories', Category::all());
+      return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
