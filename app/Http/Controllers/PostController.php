@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Http\Middleware\VerifyCategory;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -15,6 +16,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+      $this->middleware('verifyCategory')->only(['create', 'store']);
+    }
+
     public function index()
     {
       return view('posts.index')->with('posts', Post::all());

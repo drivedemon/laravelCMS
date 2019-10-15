@@ -16,8 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// middleware(['auth']) = check user authen if user authen then go to post or not cant go to post and redirect to login "auto"
-Route::resource('categories','CategoryController')->middleware(['auth']);
-Route::resource('posts','PostController')->middleware(['auth']);
+// create group middleware for many route
+Route::middleware('auth')->group(function() {
+  Route::resource('categories','CategoryController');
+  Route::resource('posts','PostController');
+});
+// syntax middleware(['auth']) = check user authen if user authen then go to post or not cant go to post and redirect to login "auto"
+// ==============  Route::resource('categories','CategoryController')->middleware(['auth']); ====================//
 
 Route::get('/home', 'HomeController@index')->name('home');
