@@ -96,6 +96,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+      // check count post before delete
+      if ($category->post->count() > 0) {
+        Session()->flash('error', 'ไม่สามารถลบได้เนื่องจากมีบทความใช้งานอยู่');
+        return redirect()->back();
+      }
       // delete data to db by [Category method]
       $category->delete();
       // session to show front end
