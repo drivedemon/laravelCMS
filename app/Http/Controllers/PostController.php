@@ -100,6 +100,9 @@ class PostController extends Controller
         $post->deleteImage(); // ลบภาพเก่า
         $data['image'] = $image;
       }
+      if ($request->tags) {
+        $post->tags()->sync($request->tags);
+      }
       $post->update($data);
 
       Session()->flash('success', 'อัปเดตข้อมูลเรียบร้อย');
