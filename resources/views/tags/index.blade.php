@@ -13,7 +13,6 @@
         <table class="table table-bordered">
           <thead class="thead-light">
             <th width="70%">Name</th>
-            <th class="text text-center" width="10%">Total post</th>
             <th width="10%"></th>
             <th width="10%"></th>
           </thead>

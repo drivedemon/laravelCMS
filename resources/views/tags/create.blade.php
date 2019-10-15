@@ -11,20 +11,20 @@
       </div>
     @endif
     <div class="card-header">
-      {{isset($category)?"Edit Tag":"Add Tag"}}
+      {{isset($tag)?"Edit Tag":"Add Tag"}}
     </div>
     <div class="card-body">
-      <form action="{{isset($category)?route('categories.update', $category->id):route('categories.store')}}" method="post">
+      <form action="{{isset($tag)?route('tags.update', $tag->id):route('tags.store')}}" method="post">
         @csrf
-        @if(isset($category))
+        @if(isset($tag))
           @method('put')
         @endif
         <div class="form-group">
           <label for="">Name</label>
-          <input type="text" class="form-control" name="name" value="{{isset($category)?$category->name:''}}">
+          <input type="text" class="form-control" name="name" value="{{isset($tag)?$tag->name:''}}">
         </div>
         <div class="form-group">
-          <input type="submit" class="btn btn-success" name="" value="{{isset($category)?'Update Tag':'Add Tag'}}">
+          <input type="submit" class="btn btn-success" name="" value="{{isset($tag)?'Update Tag':'Add Tag'}}">
         </div>
       </form>
     </div>

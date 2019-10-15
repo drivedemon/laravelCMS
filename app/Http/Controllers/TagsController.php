@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
+use App\Http\Requests\CreateTagsRequest;
+use App\Http\Requests\UpdateTagsRequest;
 
 class TagsController extends Controller
 {
@@ -13,7 +16,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        //
+      return view('tags.index')->with('tags', Tag::all());
     }
 
     /**
@@ -23,7 +26,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+      return view('tags.create');
     }
 
     /**
@@ -32,9 +35,15 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagsRequest $request) // action when press submit form
+    // validate input in custom(CreateCategoryRequest)
     {
-        //
+      // insert data to db
+      Tag::create(['name'=>$request->name]);
+      // session to show front end
+      Session()->flash('success', 'บันทึกข้อมูลเรียบร้อย');
+      // redirect page
+      return redirect(route('tags.index'));
     }
 
     /**
@@ -54,9 +63,9 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+      return view('tags.create')->with('tag', $tag);
     }
 
     /**
@@ -66,9 +75,17 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTagsRequest $request, Tag $tag) // Tag $tag == mean is call modal Tag
+    // validate input in custom(UpdateCategoryRequest)
     {
-        //
+      // update data to db by [Category method]
+      $tag->update([
+        'name' => $request->name
+      ]);
+      // session to show front end
+      Session()->flash('success', 'อัปเดตข้อมูลเรียบร้อย');
+      // redirect page
+      return redirect(route('tags.index'));
     }
 
     /**
@@ -77,8 +94,13 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+      // delete data to db by [Category method]
+      $tag->delete();
+      // session to show front end
+      Session()->flash('success', 'ลบข้อมูลเรียบร้อย');
+      // redirect page
+      return redirect(route('tags.index'));
     }
 }
