@@ -13,6 +13,7 @@
         <table class="table table-bordered">
           <thead class="thead-light">
             <th width="70%">Name</th>
+            <th class="text text-center" width="10%">Total post</th>
             <th width="10%"></th>
             <th width="10%"></th>
           </thead>
@@ -20,6 +21,10 @@
             @foreach($tags as $tag)
               <tr>
                 <td>{{$tag->name}}</td>
+                <td align="center">
+                  <!-- call syntax post function in modal post -->
+                  {{$tag->posts->count()}}
+                </td>
                 <td align="center">
                   <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-info btn-sm">Edit</a>
                 </td>
@@ -39,7 +44,6 @@
       @endif
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
       $('.delete_form').on('submit', function(){

@@ -56,7 +56,7 @@
         @if ($tags->count() > 0)
           <div class="form-group">
             <label for="Category">Tag</label>
-            <select class="form-control" name="tags[]" multiple>
+            <select class="form-control" name="tags[]" id="select_tags" multiple>
               @foreach($tags as $tag)
                 <option value="{{$tag->id}}"
                   @if (isset($post))
@@ -77,6 +77,9 @@
       </form>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#select_tags').select2();
+    });
+  </script>
 @endsection
