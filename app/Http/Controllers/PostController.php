@@ -89,7 +89,8 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     // validate input in custom(UpdatePostRequest)
     {
-      $data = $request->only(['title', 'description', 'content']);
+      $data = $request->only(['title', 'description', 'content', 'category']);
+      $data['category_id'] = $data['category'];
       if ($request->hasfile('image')) { // เช็คว่ามีการอัปโหลดภาพใหม่มาหรือไม่
         $image = $request->image->store('posts'); // รับค่าจาก store ที่มีการอัปโหลดภาพล่าสุดเข้ามา
         $post->deleteImage(); // ลบภาพเก่า
