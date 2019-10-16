@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function() {
 // create group middleware for many route [admin role]
 Route::middleware(['auth', 'admin'])->group(function() {
   Route::get('users','UserController@index')->name('users.index');
+  Route::post('users/{user}/makeadmin','UserController@makeadmin')->name('user.makeadmin');
 });
 // syntax middleware(['auth']) = check user authen if user authen then go to post or not cant go to post and redirect to login "auto"
 // ==============  Route::resource('categories','CategoryController')->middleware(['auth']); ====================//
