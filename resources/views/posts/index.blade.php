@@ -20,7 +20,7 @@
           <tbody>
             @foreach($posts as $post)
               <tr>
-                <td align="center"><img src="storage/{{$post->image}}" alt="" width="40px" height="40px"></td>
+                <td align="center"><img src="storage/{{$post->image}}" alt="" width="90px" height="70px"></td>
                 <td>{{$post->title}}</td>
                 <!-- call syntax post function in modal post -->
                 <td><a href="{{route('categories.edit', $post->category->id)}}">{{$post->category->name}}</a></td>
