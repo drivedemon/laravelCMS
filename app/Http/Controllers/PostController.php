@@ -54,6 +54,7 @@ class PostController extends Controller
         'category_id'=> $request->category
       ]);
       if ($request->tags) {
+        // attach create fetch data to db
         $post->tags()->attach($request->tags);
       }
 
@@ -101,6 +102,7 @@ class PostController extends Controller
         $data['image'] = $image;
       }
       if ($request->tags) {
+        // sync update fetch data to db by id
         $post->tags()->sync($request->tags);
       }
       $post->update($data);
@@ -119,6 +121,8 @@ class PostController extends Controller
     {
       $post->delete(); // ลบข้อมูลในฐานข้อมูล
       $post->deleteImage(); // ลบรูปใน storage_path
+      // detach delete fetch data to db by id
+      $post->tags()->detach($post->post_id);
 
       Session()->flash('success', 'ลบข้อมูลเรียบร้อย');
       return redirect(route('posts.index'));
