@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\VerifyCategory;
+use App\Http\Middleware\VerifyIsAdmin;
 
 class Kernel extends HttpKernel
 {
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // register middleware to route
         'verifyCategory' => VerifyCategory::class,
+        'admin' => VerifyIsAdmin::class,
     ];
 
     /**

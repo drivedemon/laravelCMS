@@ -16,8 +16,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// create group middleware for many route
+// create group middleware for many route [user role]
 Route::middleware('auth')->group(function() {
+  Route::resource('categories','CategoryController');
+  Route::resource('posts','PostController');
+  Route::resource('tags','TagsController');
+});
+// create group middleware for many route [admin role]
+Route::middleware(['auth', 'admin'])->group(function() {
   Route::resource('categories','CategoryController');
   Route::resource('posts','PostController');
   Route::resource('tags','TagsController');
