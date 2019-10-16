@@ -15,8 +15,8 @@ class Post extends Model
   }
 
   public function tags() {
-    // relation many to many (this[tag] one)
-    return $this->belongsToMany(Tag::class);
+    // relation many to many (this[tag] many)
+    return $this->belongsToMany(Tag::class)->withTimestamps();
   }
 
   // create function delete image when upload now
