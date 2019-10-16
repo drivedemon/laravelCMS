@@ -92,6 +92,11 @@
                     <li class="list-group-item">
                       <a href="{{route('tags.index')}}">Tags</a>
                     </li>
+                    @if(auth()->user()->isAdmin())
+                      <li class="list-group-item">
+                        <a href="{{route('users.index')}}">User</a>
+                      </li>
+                    @endif
                   </ul>
                 </div>
                 <div class="col-md-8">
