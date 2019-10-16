@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controller\Blog\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+Route::get('blog/post/{post}', [PostController::class], 'show')->name('blog.show');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 // create group middleware for many route [user role]
@@ -27,5 +29,3 @@ Route::middleware(['auth', 'admin'])->group(function() {
 });
 // syntax middleware(['auth']) = check user authen if user authen then go to post or not cant go to post and redirect to login "auto"
 // ==============  Route::resource('categories','CategoryController')->middleware(['auth']); ====================//
-
-Route::get('/home', 'HomeController@index')->name('home');
