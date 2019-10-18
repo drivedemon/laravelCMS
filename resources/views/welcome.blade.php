@@ -53,7 +53,7 @@
                   </div>
                 @endforeach
               </div>
-              {{$posts->links()}}
+              {{$posts->appends(['search'=>request()->query('search')])->links()}}
             </div>
             @include('layouts.sidebar')
           </div>
