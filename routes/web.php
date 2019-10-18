@@ -12,8 +12,10 @@ use App\Http\Controllers\Blog\PostController;
 */
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
-Route::get('blog/post/{post}', [PostController::class, 'show'])->name('blog.show');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('blog/post/{post}', [PostController::class, 'show'])->name('blog.show');
+Route::get('blog/category/{category}', [PostController::class, 'category'])->name('blog.category');
+Route::get('blog/tag/{tag}', [PostController::class, 'tag'])->name('blog.tag');
 
 Auth::routes();
 // create group middleware for many route [user role]
