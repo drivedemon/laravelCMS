@@ -18,13 +18,13 @@ class PostController extends Controller
     ->with('categories', Category::all())
     ->with('tags', Tag::all())
     ->with('category', $category)
-    ->with('posts', $category->post()->paginate(3));
+    ->with('posts', $category->post()->paginate(4));
   }
   public function tag(Tag $tag) {
     return view('blog.tag')
     ->with('categories', Category::all())
     ->with('tags', Tag::all())
     ->with('tag', $tag)
-    ->with('posts', $tag->posts()->paginate(3));
+    ->with('posts', $tag->posts()->paginate(4));
   }
 }

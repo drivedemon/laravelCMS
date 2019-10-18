@@ -42,6 +42,7 @@
       @else
         <h3 class="text text-center">No Tags</h3>
       @endif
+      {{$tags->links()}}
     </div>
   </div>
   <script type="text/javascript">

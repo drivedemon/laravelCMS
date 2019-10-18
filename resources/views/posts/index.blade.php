@@ -41,6 +41,7 @@
       @else
         <h3 class="text text-center">No Post</h3>
       @endif
+      {{$posts->links()}}
     </div>
   </div>
   <script type="text/javascript">

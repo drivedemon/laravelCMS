@@ -39,7 +39,11 @@ class User extends Authenticatable
 
     // function check role admin
     public function isAdmin() {
-      return $this->role == 'admin';
+      if ($this->role == 'admin') {
+        return $this->role == 'admin';
+      } else {
+        return $this->role == 'writer';
+      }
     }
 
     public function posts() {

@@ -42,6 +42,7 @@
       @else
         <h3 class="text text-center">No Category</h3>
       @endif
+      {{$categorys->links()}}
     </div>
   </div>
   <script type="text/javascript">
