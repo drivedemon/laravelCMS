@@ -17,7 +17,7 @@
 
   <body>
     @section('header')
-      <header class="header text-center text-white" style="background-image: url('../img/bg.jpg');" data-overlay="8">
+      <header class="header text-center text-white" style="background-image: url('../img/bg.jpg');" data-overlay="9">
         <div class="container">
 
           <div class="row">

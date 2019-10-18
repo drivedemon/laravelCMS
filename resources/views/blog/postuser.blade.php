@@ -17,7 +17,7 @@
 
   <body>
     @section('header')
-      <header class="header text-center text-white" style="background-image: url('../img/bg.jpg');" data-overlay="9">
+      <header class="header text-center text-white" style="background-image: linear-gradient(-225deg, #1b1b1b 0%, #1b1b1b 48%, #1b1b1b 100%);">
         <div class="container">
 
           <div class="row">
