@@ -23,7 +23,7 @@
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand" href="../index.html">
+          <a class="navbar-brand" href="{{ url('/') }}">
             <img class="logo-dark" src="{{asset('img/logo-dark.png')}}" alt="logo">
             <img class="logo-light" src="{{asset('img/logo-light.png')}}" alt="logo">
           </a>
