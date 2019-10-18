@@ -53,6 +53,7 @@
                   </div>
                 @endforeach
               </div>
+              {{$posts->links()}}
             </div>
             @include('layouts.sidebar')
           </div>
