@@ -7,11 +7,16 @@ use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
-  protected $fillable = ['title','description','content','image','category_id'];
+  protected $fillable = ['title','description','content','image','category_id','user_id'];
 
   public function category() {
     // relation 1 to many (this[category] one)
     return $this->belongsTo(Category::class);
+  }
+
+  public function user() {
+    // relation 1 to many (this[category] one)
+    return $this->belongsTo(User::class);
   }
 
   public function tags() {
