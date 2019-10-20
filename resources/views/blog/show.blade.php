@@ -23,7 +23,7 @@
         <div class="col-lg-8 mx-auto align-self-center">
           <p class="opacity-70 text-uppercase small ls-1">{{$post->category->name}}</p>
           <h1 class="display-4 mt-7 mb-8">{{$post->title}}</h1>
-          <p><span class="opacity-70 mr-1">By</span> <a class="text-white" href="#">{{$post->user->name}}</a></p>
+          <p><span class="opacity-70 mr-1">By</span> <a class="text-white" href="{{route('blog.postuser', $post->id)}}">{{$post->user->name}}</a></p>
           <p><img class="avatar avatar-sm" src="{{ Gravatar::src('$post->user->email') }}"></p>
         </div>
         <div class="col-12 align-self-end text-center">

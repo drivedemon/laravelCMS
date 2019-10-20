@@ -22,7 +22,7 @@
 
           <div class="row">
             <div class="col-md-8 mx-auto">
-              <h1>Category : {{$category->name}}</h1>
+              <h1>Post by : {{$user->name}}</h1>
               <p class="lead-2 opacity-90 mt-3">Basic CMS</p>
             </div>
           </div>
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                 @empty
-                  <p class="text-center">No Result : <strong>{{$category->name}}</strong></p>
+                  <p class="text-center">No Result : <strong>{{$users->name}}</strong></p>
                 @endforelse
               </div>
               {{$posts->appends(['search'=>request()->query('search')])->links()}}

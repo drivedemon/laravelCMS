@@ -16,6 +16,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('blog/post/{post}', [PostController::class, 'show'])->name('blog.show');
 Route::get('blog/category/{category}', [PostController::class, 'category'])->name('blog.category');
 Route::get('blog/tag/{tag}', [PostController::class, 'tag'])->name('blog.tag');
+Route::get('blog/postUser/{postuser}', [PostController::class, 'postUser'])->name('blog.postuser');
 
 Auth::routes();
 // create group middleware for many route [user role]
